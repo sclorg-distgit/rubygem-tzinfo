@@ -9,7 +9,7 @@
 Summary: Daylight-savings aware timezone library
 Name: %{?scl_prefix}rubygem-%{gem_name}
 Version: 1.2.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 Group: Development/Languages
 License: MIT
 URL: http://tzinfo.github.io/
@@ -66,6 +66,7 @@ cp -a .%{gem_dir}/* \
 %check
 pushd .%{gem_instdir}
 %{?scl:scl enable %{scl} - << \EOF}
+set -e
 ruby -Ilib -e "require './test/ts_all'"
 ruby -Ilib -e "require './test/ts_all_zoneinfo.rb'"
 %{?scl:EOF}
@@ -88,6 +89,9 @@ popd
 %{gem_docdir}
 
 %changelog
+* Wed Apr 06 2016 Pavel Valena <pvalena@redhat.com> - 1.2.2-5
+- Fix: build should fail on test failure
+
 * Mon Feb 22 2016 Pavel Valena <pvalena@redhat.com> - 1.2.2-4
 - Add scl macros
 
